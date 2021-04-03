@@ -26,6 +26,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
 
+  Stream getUserId;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -64,13 +66,10 @@ class _HomeState extends State<Home> {
             children: <Widget>[
               UserAccountsDrawerHeader(
                 accountName: StreamBuilder(
-                  stream: Firestore.instance
-                      .collection('user_details')
-                      .document(globals.user_id)
-                      .snapshots(),
+                  stream: getUserId,
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return Text("Loading");
+                      return Text("Loading...");
                     }
                     dynamic userDocument = snapshot.data;
                     globals.output = userDocument['name'] as String;
@@ -117,15 +116,38 @@ class _HomeState extends State<Home> {
           ),
         ),
         appBar: AppBar(
+          actions: [
+            InkWell(
+              enableFeedback: true,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/emergencycontacts');
+                },
+                child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      children: [
+                        Icon(Icons.add),
+                        Text(
+                          "Add Contacts",
+                          style: TextStyle(fontSize: 15, color: Colors.black),
+                        )
+                      ],
+                    )),
+              ),
+            )
+          ],
           iconTheme: IconThemeData(color: Colors.black),
           elevation: 0,
           backgroundColor: Colors.white10,
+          centerTitle: true,
           title: Container(
             child: FittedBox(
               fit: BoxFit.cover,
               child: Text(
-                "",
-                style: TextStyle(fontSize: 40),
+                " ",
+                style: TextStyle(
+                    fontSize: 40, color: Theme.of(context).primaryColor),
               ),
             ),
           ),
@@ -268,7 +290,7 @@ class _HomeState extends State<Home> {
                           Navigator.pushNamed(context, '/sendsms');
                         },
                         padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
-                        color: HexColor("#ff1919"),
+                        color: HexColor("#FE0000"),
                       ),
                     ),
                   ],

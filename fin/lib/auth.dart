@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fin/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fin/user.dart';
 
@@ -47,10 +48,12 @@ class AuthService {
     }
   }
 
+  DatabaseMethods databaseMethods = DatabaseMethods();
   //register with email and password
   Future registerWithEmailAndPassword(
       String name, String email, String password) async {
     try {
+      Map<String, String> userInfoMap = {"name": name, "email": email};
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
@@ -61,6 +64,7 @@ class AuthService {
           .add({'name': name, 'email': email, 'password': password});
       //create a new document for the user with the uid
       //await DatabaseService(uid: user.uid).updateUserData(name, 0);
+      databaseMethods.uploadUserInfo(userInfoMap);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -78,4 +82,3 @@ class AuthService {
     }
   }
 }
-
