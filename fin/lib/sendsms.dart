@@ -7,6 +7,7 @@ import 'package:flutter_sms/flutter_sms.dart';
 import 'package:geolocator/geolocator.dart';
 import 'globals.dart' as globals;
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+import 'package:twilio_flutter/twilio_flutter.dart';
 
 class Sendsms extends StatefulWidget {
   @override
@@ -14,6 +15,16 @@ class Sendsms extends StatefulWidget {
 }
 
 class _SendsmsState extends State<Sendsms> {
+  @override
+  void initState() {
+    twilioFlutter = TwilioFlutter(
+        accountSid: 'AC8da64d58db69ad418e850166db87d3ea',
+        authToken: '62f322efbac8448dbc99b78a1c4975f5',
+        twilioNumber: '+19282385140');
+    super.initState();
+  }
+
+  TwilioFlutter twilioFlutter;
   AuthService _authService = AuthService();
   List<String> contacts;
 
@@ -27,6 +38,7 @@ class _SendsmsState extends State<Sendsms> {
 
   void _sendSMS(String message) async {
     List<String> recipents = List<String>();
+
     Future uid = _authService.getCurrentUser();
     String email = Firestore.instance
         .collection("user")
@@ -42,6 +54,11 @@ class _SendsmsState extends State<Sendsms> {
       doc != null ? recipents.add(doc.data["phoneNo"]) : print("Null object");
     }).toList();
     Navigator.pop(context);
+    for (String task in recipents) {
+      twilioFlutter.sendSMS(
+          toNumber: task,
+          messageBody: 'Hii everyone this is a demo of\nflutter twilio sms.');
+    }
     String _result =
         await FlutterSms.sendSMS(message: message, recipients: recipents);
     // _sendSMS("Please Help I am in Danger", ['5566543454', "26589477788"]);
@@ -65,7 +82,7 @@ class _SendsmsState extends State<Sendsms> {
 
     getlocation();
 
-    FlutterOpenWhatsapp.sendSingleMessage("", "Please Help me!");
+    //FlutterOpenWhatsapp.sendSingleMessage("", "Please Help me!");
     _sendSMS('Please Help !!!');
 
     // ignore: unnecessary_parenthesis

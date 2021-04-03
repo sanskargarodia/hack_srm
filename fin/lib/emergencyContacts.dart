@@ -109,14 +109,18 @@ class EmergencyContacts extends StatelessWidget {
                               ),
                               onPressed: () {
                                 if (_formkey.currentState.validate()) {
-                                  Future uid = _authService.getCurrentUser();
-                                  String email = Firestore.instance
-                                      .collection("user")
+                                  String uid;
+                                  _authService
+                                      .getCurrentUser()
+                                      .then((value) => uid = value);
+                                  Future<QuerySnapshot> email = Firestore
+                                      .instance
+                                      .collection("users")
                                       .where("userId", isEqualTo: uid)
-                                      .toString();
+                                      .getDocuments();
                                   Firestore.instance
                                       .collection("emergency_contacts")
-                                      .document(email)
+                                      .document(uid)
                                       .collection("contacts")
                                       .add({'name': name, 'phoneNo': phoneNo});
                                   Navigator.pop(context);
