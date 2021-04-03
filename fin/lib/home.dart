@@ -197,14 +197,21 @@ class _HomeState extends State<Home> {
                                         Navigator.pushNamed(
                                             context, '/${homebutton.navigate}')
                                       },
-                                      child: Column(
+                                      child: Stack(
                                         // Replace with a Row for horizontal icon + text
                                         children: <Widget>[
-                                          Image(image: homebutton.imageData),
-                                          SizedBox(
-                                            height: 20,
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            child: FittedBox(
+                                                fit: BoxFit.cover,
+                                                child: Image(
+                                                    image:
+                                                        homebutton.imageData)),
                                           ),
                                           FittedBox(
+                                            alignment: Alignment.bottomCenter,
                                             fit: BoxFit.cover,
                                             child: Hero(
                                               tag: '${homebutton.title}',
