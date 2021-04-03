@@ -41,6 +41,7 @@ class AuthService {
       FirebaseUser user = result.user;
       globals.user_id = user.uid;
       globals.email = email;
+      print(globals.email);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

@@ -113,8 +113,10 @@ class EmergencyContacts extends StatelessWidget {
                               onPressed: () {
                                 if (_formkey.currentState.validate()) {
                                   Firestore.instance
-                                      .collection("users")
-                                      .add({'name': name, 'phoneNo': phoneNo});
+                                      .collection("emergency_contacts")
+                                      .document(globals.email)
+                                      .setData(
+                                          {'name': name, 'phoneNo': phoneNo});
                                   Navigator.pop(context);
                                 }
                               },
