@@ -49,22 +49,7 @@ class MyApp extends StatelessWidget {
           routes: {
             // When navigating to the "/" route, build the FirstScreen widget.
             // When navigating to the "/second" route, build the SecondScreen widget.
-            '/ngo': (context) => Ngo(),
-            '/information': (context) => Information(),
-            '/stories': (context) => Stories(),
-            '/location': (context) => Locations(),
-            '/sos': (context) => Sos(),
-            '/locations': (context) => MapPage(),
-            '/sendsms': (context) => Sendsms(),
             '/home': (context) => Home(),
-            '/descriptions': (context) => Descriptions(),
-            '/faq': (context) => Faq(),
-            '/addstory': (context) => AddStory(),
-            '/aboutus': (context) => Aboutus(),
-            '/emergencycontacts': (context) => EmergencyContacts(),
-            '/profiles': (context) => Profile(),
-            '/laws': (context) => Laws(),
-            '/domesticviolence': (context) => Domesticviolence(),
           },
           theme: ThemeData(
             primaryColor: HexColor("#A06CD9"),
