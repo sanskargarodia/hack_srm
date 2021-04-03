@@ -23,6 +23,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cloud_firestore:
+  #Firebase auth
+  firebase_auth:
+  #
+  hexcolor:
+    #Flutter spinkit
+  flutter_spinkit:
+  # google maps
+  google_maps_flutter:
+
 
 
   # The following adds the Cupertino Icons font to your application.
