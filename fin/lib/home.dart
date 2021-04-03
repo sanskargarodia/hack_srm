@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fin/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -27,6 +28,7 @@ class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
 
   Stream getUserId;
+  DatabaseMethods databaseMethods = DatabaseMethods();
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +68,17 @@ class _HomeState extends State<Home> {
             children: <Widget>[
               UserAccountsDrawerHeader(
                 accountName: StreamBuilder(
-                  stream: getUserId,
+                  stream: Firestore.instance
+                      .collection("users")
+                      .where("email", isEqualTo: globals.email)
+                      .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return Text("Loading...");
                     }
-                    dynamic userDocument = snapshot.data;
-                    globals.output = userDocument['name'] as String;
-                    return Container(
-                        child: Text(userDocument['name'] as String));
+                    //dynamic userDocument = snapshot.data;
+                    //globals.output = userDocument['name'] as String;
+                    return Container(child: Text("Guest"));
                   },
                 ),
                 accountEmail: Text(globals.email),
@@ -169,7 +173,7 @@ class _HomeState extends State<Home> {
                         direction: Axis.horizontal,
                         alignment: WrapAlignment.spaceAround,
                         spacing: 20,
-                        runSpacing: 40,
+                        runSpacing: 35,
                         children: <Widget>[
                           for (var homebutton in homebutton)
                             homebutton.title == "Hotline"

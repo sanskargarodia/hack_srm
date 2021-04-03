@@ -5,8 +5,8 @@ class DatabaseMethods {
     Firestore.instance.collection("users").add(userMap);
   }
 
-  getUserByUserEmail(String email) {
-    return Firestore.instance
+  getUserByUserEmail(String email) async {
+    return await Firestore.instance
         .collection('users')
         .where("email", isEqualTo: email)
         .getDocuments();
