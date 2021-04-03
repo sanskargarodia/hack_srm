@@ -54,15 +54,19 @@ class AuthService {
   Future registerWithEmailAndPassword(
       String name, String email, String password) async {
     try {
-      Map<String, String> userInfoMap = {"name": name, "email": email};
+      FirebaseUser user;
+
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser user = result.user;
+      user = result.user;
       globals.user_id = user.uid;
+      Map<String, String> userInfoMap = {
+        "name": name,
+        "email": email,
+        "userId": user.uid
+      };
       globals.email = email;
-      Firestore.instance
-          .collection('user_details')
-          .add({'name': name, 'email': email, 'password': password});
+
       //create a new document for the user with the uid
       //await DatabaseService(uid: user.uid).updateUserData(name, 0);
       databaseMethods.uploadUserInfo(userInfoMap);
@@ -71,6 +75,11 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+
+  Future getCurrentUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    return user.uid;
   }
 
   //signout

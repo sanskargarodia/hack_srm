@@ -23,6 +23,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:quick_actions/quick_actions.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,14 +37,7 @@ class MyApp extends StatelessWidget {
         value: AuthService().user,
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: AnimatedSplashScreen(
-            splashTransition: SplashTransition.fadeTransition,
-            splash: Splashpage(),
-            splashIconSize: 200,
-            nextScreen: Wrapper(),
-            duration: 1000,
-            pageTransitionType: PageTransitionType.leftToRight,
-          ),
+          home: Splashpage(),
           // Start the app with the "/" named route. In this case, the app starts
           // on the FirstScreen widget.
           routes: {

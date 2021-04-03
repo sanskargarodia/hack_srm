@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fin/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'globals.dart' as globals;
 
 class EmergencyContacts extends StatelessWidget {
+  AuthService _authService = AuthService();
   String name;
   String phoneNo;
   final _formkey = GlobalKey<FormState>();
@@ -23,11 +25,6 @@ class EmergencyContacts extends StatelessWidget {
             ),
             body: SingleChildScrollView(
               child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/home.png"),
-                      fit: BoxFit.cover),
-                ),
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -112,11 +109,16 @@ class EmergencyContacts extends StatelessWidget {
                               ),
                               onPressed: () {
                                 if (_formkey.currentState.validate()) {
+                                  Future uid = _authService.getCurrentUser();
+                                  String email = Firestore.instance
+                                      .collection("user")
+                                      .where("userId", isEqualTo: uid)
+                                      .toString();
                                   Firestore.instance
                                       .collection("emergency_contacts")
-                                      .document(globals.email)
-                                      .setData(
-                                          {'name': name, 'phoneNo': phoneNo});
+                                      .document(email)
+                                      .collection("contacts")
+                                      .add({'name': name, 'phoneNo': phoneNo});
                                   Navigator.pop(context);
                                 }
                               },

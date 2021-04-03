@@ -7,6 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:fin/auth.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:quick_actions/quick_actions.dart';
 
 import 'globals.dart' as globals;
 
@@ -25,6 +26,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+
   final AuthService _auth = AuthService();
 
   Stream getUserId;
