@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "54466239750",
+    "project_id": "hacksrm-d0725",
+    "storage_bucket": "hacksrm-d0725.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54466239750:android:b5cb044747274d8ce19287",
+        "android_client_info": {
+          "package_name": "com.example.fin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54466239750-38e02p43o6r7vfs5vgts7btv0lefo1ci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsSOAPRFX6xSoKCvzpI5I0-DaNtc5P7oI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54466239750-38e02p43o6r7vfs5vgts7btv0lefo1ci.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
