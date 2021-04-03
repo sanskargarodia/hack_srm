@@ -7,7 +7,7 @@
 FIN is a phone application with an aim to help curb Domestic Violence.
 
 
-##### Team Ingenuus
+##### a project by Team Ingenuus
 --- 
 ## Contributors
 - Sanskar Garodia
