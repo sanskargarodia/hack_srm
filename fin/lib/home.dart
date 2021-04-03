@@ -43,7 +43,8 @@ class _HomeState extends State<Home> {
           imageData: AssetImage("assets/images/Stories.jpeg")),
       HomeButton(
           title: "Hotline",
-          imageData: AssetImage("assets/images/Location.jpeg")),
+          imageData: AssetImage("assets/images/Location.jpeg"),
+          iconData: Icons.phone),
       HomeButton(
           title: "Location",
           navigate: "locations",
@@ -160,14 +161,32 @@ class _HomeState extends State<Home> {
                                       width: size.width / 2.5,
                                       height: size.height / 6,
                                       child: FloatingActionButton(
-                                        backgroundColor: Colors.blue,
+                                        backgroundColor:
+                                            Theme.of(context).buttonColor,
                                         shape: CircleBorder(),
-                                        child: FittedBox(
-                                            fit: BoxFit.contain,
-                                            child: Text(
-                                              "Hotline",
-                                              style: TextStyle(fontSize: 20),
-                                            )),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            Container(
+                                              child: Icon(
+                                                homebutton.iconData,
+                                                size: 50,
+                                              ),
+                                            ),
+                                            Container(
+                                              alignment: Alignment.bottomCenter,
+                                              child: FittedBox(
+                                                  fit: BoxFit.contain,
+                                                  child: Text(
+                                                    "Hotline",
+                                                    style:
+                                                        TextStyle(fontSize: 20),
+                                                  )),
+                                            ),
+                                          ],
+                                        ),
                                         onPressed: () {},
                                       ),
                                     ),
@@ -197,29 +216,30 @@ class _HomeState extends State<Home> {
                                         Navigator.pushNamed(
                                             context, '/${homebutton.navigate}')
                                       },
-                                      child: Stack(
+                                      child: Column(
                                         // Replace with a Row for horizontal icon + text
                                         children: <Widget>[
                                           Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
                                             child: FittedBox(
-                                                fit: BoxFit.cover,
+                                                fit: BoxFit.fill,
                                                 child: Image(
+                                                    height: size.height / 8,
+                                                    width: size.width / 3,
                                                     image:
                                                         homebutton.imageData)),
                                           ),
-                                          FittedBox(
+                                          Container(
                                             alignment: Alignment.bottomCenter,
-                                            fit: BoxFit.cover,
-                                            child: Hero(
-                                              tag: '${homebutton.title}',
-                                              child: Text(
-                                                "${homebutton.title}",
-                                                style: TextStyle(
-                                                    fontSize: 30,
-                                                    color: Colors.white),
+                                            child: FittedBox(
+                                              fit: BoxFit.cover,
+                                              child: Hero(
+                                                tag: '${homebutton.title}',
+                                                child: Text(
+                                                  "${homebutton.title}",
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.white),
+                                                ),
                                               ),
                                             ),
                                           )

@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           },
           theme: ThemeData(
             primaryColor: HexColor("#A06CD9"),
-            buttonColor: Colors.blue[900],
+            buttonColor: HexColor("#A06CD9"),
           ),
         ));
   }
