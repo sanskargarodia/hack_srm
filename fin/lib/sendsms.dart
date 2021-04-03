@@ -54,14 +54,13 @@ class _SendsmsState extends State<Sendsms> {
       doc != null ? recipents.add(doc.data["phoneNo"]) : print("Null object");
     }).toList();
     Navigator.pop(context);
-    for (String task in recipents) {
-      twilioFlutter.sendSMS(
-          toNumber: task,
-          messageBody: 'Hii everyone this is a demo of\nflutter twilio sms.');
-    }
+    // for (String task in recipents) {
+    //   twilioFlutter.sendSMS(
+    //       toNumber: task,
+    //       messageBody: 'Hii everyone this is a demo of\nflutter twilio sms.');
+    // }
     String _result =
         await FlutterSms.sendSMS(message: message, recipients: recipents);
-    // _sendSMS("Please Help I am in Danger", ['5566543454', "26589477788"]);
 
     print(_result);
   }
@@ -83,7 +82,7 @@ class _SendsmsState extends State<Sendsms> {
     getlocation();
 
     //FlutterOpenWhatsapp.sendSingleMessage("", "Please Help me!");
-    _sendSMS('Please Help !!!');
+    _sendSMS('I need your help.Please contact to nearest Police Station !!!');
 
     // ignore: unnecessary_parenthesis
     return Container();

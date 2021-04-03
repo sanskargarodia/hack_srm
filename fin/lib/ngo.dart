@@ -15,8 +15,10 @@ class _NgoState extends State<Ngo> {
     return Container(
         child: Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text('Friend In Need'),
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white10,
+        elevation: 0,
+        title: Text(''),
       ),
       body: StreamBuilder(
           stream: Firestore.instance.collection('ngo').snapshots(),

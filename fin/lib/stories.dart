@@ -22,8 +22,13 @@ class _StoriesState extends State<Stories> {
     return Container(
         child: Scaffold(
       appBar: AppBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          title: Text('Friend In Need'),
+          elevation: 0,
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white10,
+          title: Text(
+            'Back to Home',
+            style: TextStyle(color: Theme.of(context).primaryColor),
+          ),
           actions: <Widget>[
             FlatButton.icon(
                 onPressed: () {
@@ -50,7 +55,7 @@ class _StoriesState extends State<Stories> {
               margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: ListWheelScrollView(
+              child: ListView(
                 itemExtent: 100,
                 children: snapshot.data.documents.map((document) {
                   return Column(
@@ -64,9 +69,6 @@ class _StoriesState extends State<Stories> {
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
-                        subtitle: FittedBox(
-                            fit: BoxFit.cover,
-                            child: Text(document['description'] as String)),
                         trailing: FlatButton.icon(
                           onPressed: () {
                             globals.descriptions =

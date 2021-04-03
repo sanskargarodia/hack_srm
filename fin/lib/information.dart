@@ -28,77 +28,69 @@ class Information extends StatelessWidget {
     Color primarycolor = Theme.of(context).primaryColor;
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            title: Container(
-              padding: EdgeInsets.only(top: 10),
-              child: Hero(
-                tag: "Information",
-                child: Text(
-                  'Information',
-                  style: TextStyle(fontSize: 40),
-                ),
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 0,
+          backgroundColor: Colors.white10,
+          title: Container(
+            padding: EdgeInsets.only(top: 10),
+            child: Hero(
+              tag: "",
+              child: Text(
+                'Information',
+                style: TextStyle(
+                    fontSize: 40, color: Theme.of(context).primaryColor),
               ),
             ),
           ),
-          body: Stack(children: [
-            Container(
-              width: size.width,
-              height: size.height / 2.3,
-              decoration: BoxDecoration(
-                  color: primarycolor,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(400),
-                      bottomRight: Radius.circular(400))),
+        ),
+        body: Container(
+            child: ListView(children: <Widget>[
+          Column(children: [
+            SizedBox(
+              height: 20,
             ),
-            Container(
-                child: ListView(children: <Widget>[
-              Stack(children: [
-                for (Info info in info)
-                  Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * info.height),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      height: MediaQuery.of(context).size.height / 2,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                              color:
-                                  Theme.of(context).primaryColor.withOpacity(1),
-                              blurRadius: 9,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
+            for (Info info in info)
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20),
+                alignment: Alignment.center,
+                child: SizedBox(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    height: MediaQuery.of(context).size.height / 10,
+                    decoration: BoxDecoration(
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 9,
+                          offset: Offset(0, 3),
                         ),
-                        child: Card(
-                          child: FlatButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(0))),
-                            focusColor: Colors.black,
-                            child: Text(
-                              '${info.title}',
-                              style: TextStyle(
-                                fontSize: 30,
-                                color: Colors.black,
-                              ),
-                            ),
-                            //padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/${info.navigate}');
-                            },
+                      ],
+                    ),
+                    child: Card(
+                      child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(0))),
+                        focusColor: Colors.black,
+                        child: Text(
+                          '${info.title}',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.black,
                           ),
                         ),
+                        //padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/${info.navigate}');
+                        },
                       ),
                     ),
                   ),
-              ]),
-            ])),
-          ])),
+                ),
+              ),
+          ]),
+        ])),
+      ),
     );
   }
 }

@@ -8,13 +8,18 @@ class Descriptions extends StatelessWidget {
     return Container(
         child: Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text('Friend In Need'),
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white10,
+        elevation: 0,
+        title: Text(
+          '',
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        ),
       ),
       body: ConstrainedBox(
         constraints: BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width / 1,
-            maxHeight: MediaQuery.of(context).size.height / 1.5),
+            maxHeight: MediaQuery.of(context).size.height / 1.2),
         child: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
