@@ -13,9 +13,15 @@ FiN is a phone application with an aim to help curb Domestic Violence.
 - Hotline : To find help.
 - NGO : To find information about relevant NGOs near user.
 
-#### Other features:
+#### Additional features:
 - Optional Login
 - A shortcut for SOS button
+- Add Contacts : to add phone numbers to alert during emergencies
+- About us : App info, contact us into and terms and conditions page
+- Settings
+
+#### Aims and App flow
+![App flow](https://user-images.githubusercontent.com/41636731/113506521-fbdf9680-9562-11eb-989a-de2aad021b38.jpg)
 
 ##### - a project by Team Ingenuus
 --- 
