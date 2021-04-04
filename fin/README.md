@@ -1,4 +1,4 @@
-# fin
+# FiN
 
 A new Flutter project.
 
