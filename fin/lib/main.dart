@@ -19,6 +19,7 @@ import 'package:fin/splashpage.dart';
 import 'package:fin/stories.dart';
 import 'package:fin/user.dart';
 import 'package:fin/wrapper.dart';
+import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -36,6 +37,17 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
         value: AuthService().user,
         child: MaterialApp(
+          shortcuts: <LogicalKeySet, Intent>{
+            LogicalKeySet(LogicalKeyboardKey.home,
+                LogicalKeyboardKey.audioVolumeDown): const ActivateIntent(),
+          },
+          actions: <Type, Action<Intent>>{
+            ActivateAction: CallbackAction(
+              onInvoke: (Intent intent) {
+                return Navigator.pushNamed(context, '/sendsms');
+              },
+            )
+          },
           debugShowCheckedModeBanner: false,
           home: Splashpage(),
           // Start the app with the "/" named route. In this case, the app starts

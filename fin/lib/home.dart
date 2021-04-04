@@ -2,11 +2,14 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fin/database.dart';
+import 'package:fin/sendsms.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:fin/auth.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 import 'globals.dart' as globals;
@@ -276,28 +279,29 @@ class _HomeState extends State<Home> {
                                   ),
                         ]),
                     Container(
-                      child: RaisedButton(
-                        onPressed: () => {null},
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(16))),
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Text(
-                            'SOS',
-                            style: TextStyle(
-                              fontSize: 70,
-                              color: Colors.white,
+                        child: RaisedButton(
+                          onPressed: () => {null},
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16))),
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Text(
+                              'SOS',
+                              style: TextStyle(
+                                fontSize: 70,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
+                          onLongPress: () {
+                            Navigator.pushNamed(context, '/sendsms');
+                          },
+                          padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
+                          color: HexColor("#FE0000"),
                         ),
-                        onLongPress: () {
-                          Navigator.pushNamed(context, '/sendsms');
-                        },
-                        padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
-                        color: HexColor("#FE0000"),
                       ),
-                    ),
+                  
                   ],
                 ),
                 Container(

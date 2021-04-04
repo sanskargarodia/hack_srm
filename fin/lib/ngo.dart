@@ -33,7 +33,7 @@ class _NgoState extends State<Ngo> {
               children: snapshot.data.documents.map((document) {
                 return Container(
                     width: MediaQuery.of(context).size.width / 1.2,
-                    height: MediaQuery.of(context).size.height / 6,
+                    height: MediaQuery.of(context).size.height / 4,
                     child: Column(
                       children: <Widget>[
                         ListTile(

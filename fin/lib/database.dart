@@ -4,10 +4,10 @@ class DatabaseMethods {
   uploadUserInfo(userMap) {
     Firestore.instance.collection("users").add(userMap);
   }
+
   uploadUserId(userMap) {
     Firestore.instance.collection("users").add(userMap);
   }
-
 
   getUserByUserEmail(String email) async {
     return await Firestore.instance

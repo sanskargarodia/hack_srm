@@ -2,12 +2,16 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fin/auth.dart';
+import 'package:fin/user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 import 'package:geolocator/geolocator.dart';
 import 'globals.dart' as globals;
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:twilio_flutter/twilio_flutter.dart';
+import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 
 class Sendsms extends StatefulWidget {
   @override
@@ -15,6 +19,7 @@ class Sendsms extends StatefulWidget {
 }
 
 class _SendsmsState extends State<Sendsms> {
+  User user = User();
   @override
   void initState() {
     twilioFlutter = TwilioFlutter(
@@ -39,19 +44,16 @@ class _SendsmsState extends State<Sendsms> {
   void _sendSMS(String message) async {
     List<String> recipents = List<String>();
 
-    Future uid = _authService.getCurrentUser();
-    String email = Firestore.instance
-        .collection("user")
-        .where("userId", isEqualTo: uid)
-        .toString();
     QuerySnapshot snapshotUserInfo = await Firestore.instance
         .collection("emergency_contacts")
-        .document(email)
+        .document("default")
         .collection("contacts")
         .getDocuments();
 
     snapshotUserInfo.documents.map((doc) {
-      doc != null ? recipents.add(doc.data["phoneNo"]) : print("Null object");
+      doc.data["phoneNo"] != null
+          ? recipents.add(doc.data["phoneNo"].toString())
+          : print("Null object");
     }).toList();
     Navigator.pop(context);
     // for (String task in recipents) {

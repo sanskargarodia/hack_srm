@@ -22,6 +22,7 @@ class _StoriesState extends State<Stories> {
     return Container(
         child: Scaffold(
       appBar: AppBar(
+          actionsIconTheme: IconThemeData(color: Colors.black),
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white10,
@@ -36,7 +37,7 @@ class _StoriesState extends State<Stories> {
                 },
                 icon: Icon(
                   Icons.add,
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
                 label: Text(''))
           ]),

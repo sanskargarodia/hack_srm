@@ -9,9 +9,6 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   // create user object based on firebase user
   User _userFromFirebaseUser(FirebaseUser user) {
-    if (user != null) {
-      globals.user_id = user.uid;
-    }
     return user != null ? User(uid: user.uid) : null;
   }
 
@@ -79,7 +76,7 @@ class AuthService {
 
   Future getCurrentUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    return user.uid;
+    return user;
   }
 
   //signout
